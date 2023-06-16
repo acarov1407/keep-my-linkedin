@@ -16,13 +16,21 @@ function Index() {
 
   useEffect(() => {
 
-    if (users.length === 0) {
+    const checkUsers = () => {
+      const users = JSON.parse(localStorage.getItem('users'));
+      if(!users) {
+        localStorage.setItem('users', JSON.stringify([]));
+        return;
+      }
+
       dispatch(getUsers());
     }
 
+    checkUsers();
+
+
 
   }, []);
-
 
 
   const contacts = [

@@ -5,10 +5,10 @@ export const getUsers = createAsyncThunk(
     'users/getUsers',
     async (arg, { dispatch, getState, extra, requestId, signal, rejectWithValue }) => {
         try {
-            await delay(800);
-            const data = await JSON.parse(localStorage.getItem('users'));
-            if(data) return data;
-            return [];
+            
+            const data = JSON.parse(localStorage.getItem('users')) ?? [];
+            //await delay(500);
+            return data;
         } catch (error) {
             return rejectWithValue('Error loading users');
         }
@@ -20,11 +20,12 @@ export const createUser = createAsyncThunk(
     'users/createUser',
     async (user, { rejectWithValue }) => {
         try {
-            await delay(800);
             const actualStorage = JSON.parse(localStorage.getItem('users'));
+            await delay(800);
             localStorage.setItem('users', JSON.stringify([...actualStorage, user]));
             return user;
         } catch (error) {
+            console.log(error);
             return rejectWithValue('Error creating user');
         }
     }
@@ -34,8 +35,8 @@ export const deleteUser = createAsyncThunk(
     'users/deleteUser',
     async (userId, { rejectWithValue }) => {
         try {
+            const actualStorage = JSON.parse(localStorage.getItem('users'));
             await delay(1000);
-            const actualStorage = await JSON.parse(localStorage.getItem('users'));
             const updatedStorage = actualStorage.filter(user => user.id !== userId);
             localStorage.setItem('users', JSON.stringify(updatedStorage));
             return userId;

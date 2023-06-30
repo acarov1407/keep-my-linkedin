@@ -1,10 +1,10 @@
-import "../styles/table/table.css";
+import "../../styles/table/table.css";
 import { Table, Space } from "antd"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import { handleModalAlert, handleModalEdit, handleModalDetails, setSelectedUsers } from "../features/users/userSlice";
-import { priorities } from "../helpers/mapping.js";
-import useRedux from "../hooks/redux/useRedux";
+import { handleModalAlert, handleModalEdit, handleModalDetails, setSelectedUsers } from "../../features/users/userSlice";
+import { priorities } from "../../helpers/mapping.js";
+import useRedux from "../../hooks/redux/useRedux";
 
 
 function MyTable({ datasource }) {

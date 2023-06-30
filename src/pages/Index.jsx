@@ -1,6 +1,6 @@
 import "../styles/home/home.css"
 import { useEffect } from "react"
-import MyTable from "../components/MyTable"
+import MyTable from "../components/table/MyTable"
 import { getUsers } from "../features/users/userSlice";
 import useRedux from "../hooks/redux/useRedux";
 import ConfirmationModal from "../components/modal/ConfirmationModal";

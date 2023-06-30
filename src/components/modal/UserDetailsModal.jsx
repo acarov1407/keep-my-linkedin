@@ -40,7 +40,7 @@ function UserDetailsModal() {
                 </div>
                 <div className="userDetailsModal__field">
                     <p className="userDetailsModal__field-label">Linkedin</p>
-                    <a href={currentUser?.linkedin} target="_blank">{currentUser?.linkedin}</a>
+                    <a href={currentUser?.linkedin} target="_blank" rel="noreferrer">{currentUser?.linkedin}</a>
                 </div>
                 <div className="userDetailsModal__field">
                     <p className="userDetailsModal__field-label">Annotations</p>

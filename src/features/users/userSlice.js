@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { delay } from "../../helpers/simulation";
 
 export const getUsers = createAsyncThunk(
     'users/getUsers',
@@ -34,21 +33,6 @@ export const createUser = createAsyncThunk(
     }
 )
 
-const deleteUser2 = createAsyncThunk(
-    'users/deleteUser',
-    async (userId, { rejectWithValue }) => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/${userId}`, {
-                method: "DELETE"
-            });
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            return rejectWithValue('An error occurred while trying to delete user.');
-        }
-    }
-)
-
 const deleteUser = async (userId) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/${userId}`, {
@@ -63,7 +47,7 @@ const deleteUser = async (userId) => {
 
 export const deleteUsers = createAsyncThunk(
     'users/deleteUsers',
-    async (usersIds, { rejectWithValue, dispatch }) => {
+    async (usersIds, { rejectWithValue }) => {
         const deletedUsers = [];
         try {
             for (const userId of usersIds) {
@@ -132,7 +116,7 @@ export const userSlice = createSlice({
             state.message = "";
         },
 
-        handleModalAlert: (state, action) => {
+        handleModalAlert: (state) => {
             state.modals.alert = !state.modals.alert;
         },
         handleModalEdit: (state, action) => {
@@ -190,7 +174,7 @@ export const userSlice = createSlice({
 
             })
 
-            .addCase(createUser.pending, (state, action) => {
+            .addCase(createUser.pending, (state) => {
                 state.loadings.isCreating = true;
             })
             .addCase(createUser.fulfilled, (state, action) => {
@@ -208,7 +192,7 @@ export const userSlice = createSlice({
             })
 
 
-            .addCase(deleteUsers.pending, (state, action) => {
+            .addCase(deleteUsers.pending, (state) => {
                 state.loadings.isDeleting = true;
             })
             .addCase(deleteUsers.fulfilled, (state, action) => {
@@ -228,7 +212,7 @@ export const userSlice = createSlice({
                 state.message = action.payload;
                 state.loadings.isDeleting = false;
             })
-            .addCase(editUser.pending, (state, action) => {
+            .addCase(editUser.pending, (state) => {
                 state.loadings.isEditing = true;
             })
             .addCase(editUser.fulfilled, (state, action) => {

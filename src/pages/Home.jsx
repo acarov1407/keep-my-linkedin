@@ -8,7 +8,7 @@ import UserEditionModal from "../components/modal/UserEditionModal";
 import UserDetailsModal from "../components/modal/UserDetailsModal";
 import Spinner from "../components/auxiliary/Spinner";
 import { Link } from "react-router-dom";
-import UserSearcher from "../components/search/userSearcher";
+import UserSearcher from "../components/search/UserSearcher";
 
 function Home() {
 

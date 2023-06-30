@@ -66,3 +66,8 @@ If you'd like to see a live demo of the application, you can access it <strong><
 
 ## License
 This project is licensed under the MIT License.
+
+## Contact :link:
+If you have made it this far and have any questions, suggestions, or want to contact me, you can do so here:
+- <carovelandia07@gmail.com>
+- https://www.linkedin.com/in/acarov1407

@@ -42,6 +42,7 @@ If you'd like to see a live demo of the application, you can access it <strong><
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a7eefca7-5c1c-4a07-aff5-fbd37af7c75a)
 
 ## Installation :gear:
+- ### Project Configuration
 1. Clone the repository to your local machine:
    ```
    git clone https://github.com/acarov1407/keep-my-linkedin.git
@@ -54,6 +55,16 @@ If you'd like to see a live demo of the application, you can access it <strong><
    ```
    npm install
    ```
+- ### API Configuration
+1. Go to <a>https://mockapi.io/</a>
+2. Create a new Project with "/api" prefix <br> </br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/c5038277-5f9a-4f36-85ea-686761c9b6dd)
+4. Create a new resource with the following schema: <br> </br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a22f3656-4894-457b-b138-93456b65ae42)
+5. Copy your API endpoint (should be like https://[random-key].mockapi.io/api/users )
+6. In root project folder create a file ".env"
+7. Create an environment variable VITE_API_URL with your API endpoint
+
 ## Usage 
 1. Start the application in development mode:
    ```

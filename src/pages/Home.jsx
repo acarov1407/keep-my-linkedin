@@ -10,7 +10,7 @@ import Spinner from "../components/auxiliary/Spinner";
 import { Link } from "react-router-dom";
 import UserSearcher from "../components/search/userSearcher";
 
-function Index() {
+function Home() {
 
   const { dispatch, selector: { searchedUsers, loadings: { isFetchingUsers } } } = useRedux(state => state.users);
 
@@ -55,4 +55,4 @@ function Index() {
   )
 }
 
-export default Index
+export default Home

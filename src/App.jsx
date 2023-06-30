@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AppLayout from "./layout/AppLayout"
-import Index from "./pages/Index"
+import Home from "./pages/Home"
 import NewUser from "./pages/NewUser"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />} >
-          <Route index element={<Index />} />
+          <Route index element={<Home />} />
           <Route path="new" element={<NewUser />} />
         </Route>
       </Routes>

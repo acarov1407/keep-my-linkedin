@@ -1,4 +1,4 @@
-# KeepMyLinkedins
+# Keep-My-Linkedins
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/139de99d-7f74-4b45-9ef6-2a3c444afc6c)
 
 ## About :open_book:

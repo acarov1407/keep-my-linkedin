@@ -5,7 +5,7 @@
 This project is a web application developed in React Vite with Redux Toolkit that allows you to maintain a contact agenda for LinkedIn users. The application allows users to add people to their contact list, including their name, LinkedIn profile link, work notes, and priority level based on how important a person is in your contact list.
 
 ## Demo :mag_right:
-If you'd like to see a live demo of the application, you can access it <strong><a href="https://www.npmjs.com/package/react-modal">Here</a></strong>
+If you'd like to see a live demo of the application, you can access it here: <strong><a>https://keep-my-linkedins.netlify.app/</a></strong>
 
 ## Technologies :hammer_and_wrench:
 - [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://es.react.dev/)

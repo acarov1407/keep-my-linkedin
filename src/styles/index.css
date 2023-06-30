@@ -2,10 +2,15 @@
   --primary_color: #F8F6F4;
   --secondary_color: #63615E;
   --darken_secondary: #353331;
+  --light_gray: rgb(231 229 228);
   --neutral: #EFECEA;
   --black: #262626;
   --white: #FFF;
   --primary_font: 'Outfit', sans-serif;
+  --red: rgb(220 38 38);
+  --darken_red: rgb(185 28 28);
+  --indigo: rgb(79 70 229);
+  --darken_indigo: rgb(67 56 202);
 }
 
 html {
@@ -50,12 +55,60 @@ a {
 }
 
 .icon {
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.table-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+@media (min-width: 768px) { 
+  .table-icon {
+    height: 2.1rem;
+    width: 2.1rem;
+  }
+}
+
+.priority {
+  text-align: center;
+  border-radius: 0.2rem;
+  padding: 0.1rem;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-width: 10rem;
+}
+
+.priority--modal {
+  margin-top: 0.6rem;
+}
+
+.priority-low {
+  background-color: #e5e5e5;
+  color: #848484;
+  border: 1px solid #848484;
+}
+
+.priority-medium {
+  background-color: #ffd699;
+  color: #b36a00;
+  border: 1px solid #b36a00;
+}
+
+.priority-high {
+  background-color: #fbb4af;
+  color: #c6180b;
+  border: 1px solid #c6180b;
 }
 
 main {
   padding: 5rem 0;
+}
+
+.mb {
+  margin-bottom: 1rem;
 }
 
 
@@ -174,23 +227,7 @@ main {
 
 
 
-/********************* BUTTONS *********************/
 
-.delete-button {
-  border: none;
-  padding: 0.8rem 1.5rem;
-  background-color: #FF3333;
-  color: var(--primary_color);
-  border-radius: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #f50000;
-  transition: background-color .3s;
-}
 
 
 

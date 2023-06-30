@@ -1,6 +1,6 @@
 import { Modal } from "antd"
 import useRedux from "../../hooks/redux/useRedux"
-import { deleteUser, handleModalAlert } from "../../features/users/userSlice";
+import { deleteUsers, handleModalAlert } from "../../features/users/userSlice";
 
 
 function ConfirmationModal() {
@@ -9,13 +9,13 @@ function ConfirmationModal() {
         dispatch,
         selector: {
             modals,
-            currentUser,
+            selectedUsers,
             loadings: { isDeleting }
         } } = useRedux(state => state.users);
 
 
     const handleOk = async () => {
-        await dispatch(deleteUser(currentUser.id)).unwrap();
+        await dispatch(deleteUsers(selectedUsers)).unwrap();
         dispatch(handleModalAlert());
 
     }
@@ -29,7 +29,7 @@ function ConfirmationModal() {
             confirmLoading={isDeleting}
             onCancel={() => dispatch(handleModalAlert())}
         >
-            <p>Are you sure you want to delete this user?</p>
+            <p>Are you sure you want to delete {selectedUsers?.length} selected users?</p>
         </Modal>
     )
 }

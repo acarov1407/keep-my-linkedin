@@ -1,0 +1,17 @@
+.userDetailsModal__container {
+    border: 1px solid var(--light_gray);
+    padding: 2rem;
+}
+
+.userDetailsModal__field {
+    margin-bottom: 1.5rem;
+}
+
+
+.userDetailsModal__field:last-child {
+    margin-bottom: 0;
+}
+
+.userDetailsModal__field-label {
+    font-weight: 500;
+}

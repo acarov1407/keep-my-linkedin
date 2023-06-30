@@ -5,9 +5,8 @@ export const getUsers = createAsyncThunk(
     'users/getUsers',
     async (arg, { dispatch, getState, extra, requestId, signal, rejectWithValue }) => {
         try {
-            
-            const data = JSON.parse(localStorage.getItem('users')) ?? [];
-            //await delay(500);
+            const response = await fetch(import.meta.env.VITE_API_URL);
+            const data = await response.json();
             return data;
         } catch (error) {
             return rejectWithValue('Error loading users');
@@ -20,10 +19,15 @@ export const createUser = createAsyncThunk(
     'users/createUser',
     async (user, { rejectWithValue }) => {
         try {
-            const actualStorage = JSON.parse(localStorage.getItem('users'));
-            await delay(800);
-            localStorage.setItem('users', JSON.stringify([...actualStorage, user]));
-            return user;
+            const response = await fetch(import.meta.env.VITE_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+            const data = await response.json();
+            return data;
         } catch (error) {
             console.log(error);
             return rejectWithValue('Error creating user');
@@ -31,30 +35,65 @@ export const createUser = createAsyncThunk(
     }
 )
 
-export const deleteUser = createAsyncThunk(
+const deleteUser2 = createAsyncThunk(
     'users/deleteUser',
     async (userId, { rejectWithValue }) => {
         try {
-            const actualStorage = JSON.parse(localStorage.getItem('users'));
-            await delay(1000);
-            const updatedStorage = actualStorage.filter(user => user.id !== userId);
-            localStorage.setItem('users', JSON.stringify(updatedStorage));
-            return userId;
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/${userId}`, {
+                method: "DELETE"
+            });
+            const data = await response.json();
+            return data;
         } catch (error) {
-            return rejectWithValue('An error occurred while trying to delete the user.');
+            return rejectWithValue('An error occurred while trying to delete user.');
         }
     }
 )
+
+const deleteUser = async (userId) => {
+    try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/${userId}`, {
+            method: "DELETE"
+        });
+        const data = await response.json();
+        return data.id;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const deleteUsers = createAsyncThunk(
+    'users/deleteUsers',
+    async (usersIds, { rejectWithValue, dispatch }) => {
+        const deletedUsers = [];
+        try {
+            for (const userId of usersIds) {
+                const user = await deleteUser(userId);
+                deletedUsers.push(user);
+            }
+
+            return deletedUsers;
+        } catch (error) {
+            return rejectWithValue('An error ocurrend while trying to delete users');
+        }
+    }
+)
+
+
 
 export const editUser = createAsyncThunk(
     'users/editUser',
     async (user, { rejectWithValue }) => {
         try {
-            await delay(1000);
-            const actualStorage = await JSON.parse(localStorage.getItem('users'));
-            const updatedStorage = actualStorage.map(_user => _user.id === user.id ? user : _user);
-            localStorage.setItem('users', JSON.stringify(updatedStorage));
-            return user;
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/${user.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            });
+            const data = await response.json();
+            return data;
         } catch (error) {
             return rejectWithValue('An error occurred while trying to edit the user.')
         }
@@ -63,18 +102,22 @@ export const editUser = createAsyncThunk(
 
 const initialState = {
     users: [],
+    searchedUsers: [],
+    selectedUsers: [],
     currentUser: {},
     loadings: {
         isFetchingUsers: true,
         isCreating: false,
         isDeleting: false,
-        isEditing: false
+        isEditing: false,
+        isClosingModal: false
 
     },
     error: false,
     modals: {
         alert: false,
-        edit: false
+        edit: false,
+        details: false
     },
     success: false,
     message: ""
@@ -92,9 +135,9 @@ export const userSlice = createSlice({
 
         handleModalAlert: (state, action) => {
             if (state.modals.alert) {
-                state.currentUser = {}
+                state.selectedUsers = [];
             } else {
-                state.currentUser = action.payload;
+                //state.selectedUsers = action.payload;
             }
 
             state.modals.alert = !state.modals.alert;
@@ -107,7 +150,33 @@ export const userSlice = createSlice({
             }
 
             state.modals.edit = !state.modals.edit;
+        },
+        handleModalDetails: (state, action) => {
+            if (state.modals.details) {
+                state.currentUser = {}
+            } else {
+                if (state.loadings.isClosingModal) return;
+                state.currentUser = action.payload;
+            }
+
+            state.modals.details = !state.modals.details;
+        },
+        setIsClosingModal: (state, action) => {
+            state.loadings.isClosingModal = action.payload;
+        },
+        setSelectedUsers: (state, action) => {
+            state.selectedUsers = action.payload;
+        },
+        searchUser: (state, action) => {
+            if (!action.payload) return;
+            if (state.users.length > 0) {
+                state.searchedUsers = state.users.filter(user => user.fullname.toLowerCase().includes(action.payload.toLowerCase()));
+            }
+        },
+        clearSearch: (state) => {
+            state.searchedUsers = state.users;
         }
+
     },
     extraReducers: (builder) => {
 
@@ -115,7 +184,8 @@ export const userSlice = createSlice({
             state.loadings.isFetchingUsers = true;
         })
             .addCase(getUsers.fulfilled, (state, action) => {
-                state.users = action.payload.reverse() || [];
+                state.users = [...action.payload].sort((a, b) => b.createdAt - a.createdAt);
+                state.searchedUsers = state.users;
                 state.loadings.isFetchingUsers = false;
             })
             .addCase(getUsers.rejected, (state, action) => {
@@ -132,6 +202,7 @@ export const userSlice = createSlice({
             })
             .addCase(createUser.fulfilled, (state, action) => {
                 state.users = [action.payload, ...state.users];
+                state.searchedUsers = state.users;
                 state.success = true;
                 state.message = "User has been successfully created.";
                 state.loadings.isCreating = false;
@@ -144,19 +215,20 @@ export const userSlice = createSlice({
             })
 
 
-            .addCase(deleteUser.pending, (state, action) => {
+            .addCase(deleteUsers.pending, (state, action) => {
                 state.loadings.isDeleting = true;
             })
-            .addCase(deleteUser.fulfilled, (state, action) => {
+            .addCase(deleteUsers.fulfilled, (state, action) => {
                 if (action.payload) {
-                    state.users = state.users.filter(user => user.id !== action.payload);
+                    state.users = state.users.filter(user => !action.payload.includes(user.id));
+                    state.searchedUsers = state.users;
                     state.success = true;
-                    state.message = "User has been successfully deleted."
+                    state.message = "Users has been successfully deleted."
                 }
 
                 state.loadings.isDeleting = false;
             })
-            .addCase(deleteUser.rejected, (state, action) => {
+            .addCase(deleteUsers.rejected, (state, action) => {
                 state.success = false;
                 state.error = true;
                 state.message = action.payload;
@@ -167,6 +239,7 @@ export const userSlice = createSlice({
             })
             .addCase(editUser.fulfilled, (state, action) => {
                 state.users = state.users.map(user => user.id === action.payload.id ? action.payload : user);
+                state.searchedUsers = state.users;
                 state.success = true;
                 state.message = "Changes have been saved successfully."
                 state.loadings.isEditing = false;
@@ -183,6 +256,11 @@ export const userSlice = createSlice({
 export const {
     handleModalAlert,
     handleModalEdit,
-    resetAlerts } = userSlice.actions;
+    handleModalDetails,
+    setIsClosingModal,
+    setSelectedUsers,
+    resetAlerts,
+    searchUser,
+    clearSearch } = userSlice.actions;
 
 export default userSlice.reducer;

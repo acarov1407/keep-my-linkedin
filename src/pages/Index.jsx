@@ -5,30 +5,22 @@ import { getUsers } from "../features/users/userSlice";
 import useRedux from "../hooks/redux/useRedux";
 import ConfirmationModal from "../components/modal/ConfirmationModal";
 import UserEditionModal from "../components/modal/UserEditionModal";
+import UserDetailsModal from "../components/modal/UserDetailsModal";
 import Spinner from "../components/auxiliary/Spinner";
 import { Link } from "react-router-dom";
+import UserSearcher from "../components/search/userSearcher";
 
 
 function Index() {
 
 
-  const { dispatch, selector: { users, loadings: { isFetchingUsers } } } = useRedux(state => state.users);
+  const { dispatch, selector: { searchedUsers, loadings: { isFetchingUsers } } } = useRedux(state => state.users);
 
   useEffect(() => {
 
-    const checkUsers = () => {
-      const users = JSON.parse(localStorage.getItem('users'));
-      if(!users) {
-        localStorage.setItem('users', JSON.stringify([]));
-        return;
-      }
-
+    if (searchedUsers.length === 0) {
       dispatch(getUsers());
     }
-
-    checkUsers();
-
-
 
   }, []);
 
@@ -108,7 +100,6 @@ function Index() {
 
 
 
-
   return (
     <div className="container">
       {
@@ -116,18 +107,11 @@ function Index() {
           ?
           <Spinner />
           :
-          users.length > 0
+          searchedUsers.length > 0
             ?
             <>
-              <MyTable datasource={users} />
-              <button
-                type="button"
-                onClick={() => {
-                  localStorage.setItem('users', JSON.stringify(contacts))
-                }}
-              >
-                Add
-              </button>
+              <UserSearcher />
+              <MyTable datasource={searchedUsers} />
             </>
             :
             <div className="empty">
@@ -143,6 +127,7 @@ function Index() {
       }
       <UserEditionModal />
       <ConfirmationModal />
+      <UserDetailsModal />
     </div>
 
   )

@@ -1,7 +1,6 @@
 import { Form, Input, Select } from "antd"
 import "../../styles/forms/userForm.css"
 import { createUser, editUser, handleModalEdit } from "../../features/users/userSlice";
-import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 import useRedux from "../../hooks/redux/useRedux";
 import { useEffect } from "react";
@@ -45,8 +44,8 @@ function UserForm({ editionMode = false }) {
     const handleCreate = async (data) => {
         await dispatch(createUser({
             ...data,
-            id: nanoid(),
-            priority: parseInt(data.priority)
+            priority: parseInt(data.priority),
+            createdAt: Date.now()
         })).unwrap();
 
         navigate('/');

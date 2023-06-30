@@ -10,9 +10,7 @@ import Spinner from "../components/auxiliary/Spinner";
 import { Link } from "react-router-dom";
 import UserSearcher from "../components/search/userSearcher";
 
-
 function Index() {
-
 
   const { dispatch, selector: { searchedUsers, loadings: { isFetchingUsers } } } = useRedux(state => state.users);
 
@@ -23,82 +21,6 @@ function Index() {
     }
 
   }, []);
-
-
-  const contacts = [
-    {
-      id: 1,
-      fullname: "John Smith",
-      linkedin: "https://www.linkedin.com/in/johnsmith",
-      annotations: "Experienced marketing professional with strong leadership skills.",
-      priority: 2
-    },
-    {
-      id: 2,
-      fullname: "Emily Johnson",
-      linkedin: "https://www.linkedin.com/in/emilyjohnson",
-      annotations: "Software engineer specialized in web development.",
-      priority: 1
-    },
-    {
-      id: 3,
-      fullname: "Michael Davis",
-      linkedin: "https://www.linkedin.com/in/michaeldavis",
-      annotations: "Sales manager with a proven track record of exceeding targets.",
-      priority: 3
-    },
-    {
-      id: 4,
-      fullname: "Sarah Thompson",
-      linkedin: "https://www.linkedin.com/in/sarahthompson",
-      annotations: "Graphic designer with a keen eye for detail.",
-      priority: 2
-    },
-    {
-      id: 5,
-      fullname: "David Wilson",
-      linkedin: "https://www.linkedin.com/in/davidwilson",
-      annotations: "Financial analyst skilled in data analysis and forecasting.",
-      priority: 1
-    },
-    {
-      id: 6,
-      fullname: "Jennifer Brown",
-      linkedin: "https://www.linkedin.com/in/jenniferbrown",
-      annotations: "Human resources specialist experienced in talent acquisition.",
-      priority: 2
-    },
-    {
-      id: 7,
-      fullname: "Robert Anderson",
-      linkedin: "https://www.linkedin.com/in/robertanderson",
-      annotations: "Project manager with expertise in agile methodologies.",
-      priority: 3
-    },
-    {
-      id: 8,
-      fullname: "Olivia Martinez",
-      linkedin: "https://www.linkedin.com/in/oliviamartinez",
-      annotations: "Marketing coordinator with a strong background in social media.",
-      priority: 1
-    },
-    {
-      id: 9,
-      fullname: "Daniel Thomas",
-      linkedin: "https://www.linkedin.com/in/danielthomas",
-      annotations: "Experienced accountant proficient in financial analysis.",
-      priority: 2
-    },
-    {
-      id: 10,
-      fullname: "Sophia Walker",
-      linkedin: "https://www.linkedin.com/in/sophiawalker",
-      annotations: "UX/UI designer passionate about creating intuitive user experiences.",
-      priority: 3
-    }
-  ];
-
-
 
   return (
     <div className="container">

@@ -29,7 +29,6 @@ export const createUser = createAsyncThunk(
             const data = await response.json();
             return data;
         } catch (error) {
-            console.log(error);
             return rejectWithValue('Error creating user');
         }
     }
@@ -134,12 +133,6 @@ export const userSlice = createSlice({
         },
 
         handleModalAlert: (state, action) => {
-            if (state.modals.alert) {
-                state.selectedUsers = [];
-            } else {
-                //state.selectedUsers = action.payload;
-            }
-
             state.modals.alert = !state.modals.alert;
         },
         handleModalEdit: (state, action) => {
@@ -222,6 +215,7 @@ export const userSlice = createSlice({
                 if (action.payload) {
                     state.users = state.users.filter(user => !action.payload.includes(user.id));
                     state.searchedUsers = state.users;
+                    state.selectedUsers = [];
                     state.success = true;
                     state.message = "Users has been successfully deleted."
                 }

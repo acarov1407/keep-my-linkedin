@@ -1,5 +1,8 @@
 .table__content-panel {
     margin-bottom: 2.2rem;
+    display: flex;
+    align-items: center;
+    gap: 5rem;
 }
 
 .table__content-deleteButton {
@@ -22,6 +25,27 @@
 .table__content-deleteButton:hover {
     background-color: #f50000;
     transition: background-color .3s;
+}
+
+.table__content-cancelButton {
+    all: unset;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--light_gray);
+    padding: 0.5rem;
+    cursor: default;
+    transition: background-color .3s;
+    opacity: 0;
+}
+
+.table__content-cancelButton:hover {
+    background-color: var(--neutral);
+}
+
+.table__content-cancelButton--active {
+    opacity: 1;
+    cursor: pointer;
 }
 
 

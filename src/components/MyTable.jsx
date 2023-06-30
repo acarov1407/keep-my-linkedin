@@ -9,34 +9,36 @@ import useRedux from "../hooks/redux/useRedux";
 
 function MyTable({ datasource }) {
 
-    const [selectedRows, setSelectedRows] = useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [isSelected, setIsSelected] = useState(false);
 
-    const { dispatch, selector: { selectedUsers } } = useRedux(state => state.users);
+    const { dispatch, selector: { selectedUsers }  } = useRedux(state => state.users);
 
     useEffect(() => {
         const checkSelection = () => {
-            if (selectedRows.length > 0) {
+            if (selectedRowKeys.length > 0) {
                 setIsSelected(true);
             } else {
                 setIsSelected(false);
             }
         }
         checkSelection();
-    }, [selectedRows]);
+    }, [selectedRowKeys]);
 
     useEffect(() => {
-        if(selectedUsers.length === 0) setSelectedRows([]);
+        if(selectedUsers.length === 0) {
+            setSelectedRowKeys([]);
+        }
     }, [selectedUsers]);
 
 
     const onSelectChange = (newSelectedRowKeys) => {
-        setSelectedRows(newSelectedRowKeys);
+        setSelectedRowKeys(newSelectedRowKeys);
     }
 
     const rowSelection = {
-        selectedRows,
-        onChange: onSelectChange
+        selectedRowKeys,
+        onChange: onSelectChange,
 
     }
 
@@ -54,7 +56,7 @@ function MyTable({ datasource }) {
     }
 
     const handleMultipleDelete = () => {
-        dispatch(setSelectedUsers(selectedRows));
+        dispatch(setSelectedUsers(selectedRowKeys));
         dispatch(handleModalAlert());
     }
 
@@ -146,12 +148,22 @@ function MyTable({ datasource }) {
             {
                 <div className="table__content-panel">
                     <button
+                        type="button"
                         className={`table__content-deleteButton ${isSelected ? 'table__content-deleteButton--active' : ''}`}
                         disabled={!isSelected}
                         onClick={handleMultipleDelete}
 
                     >
                         Delete All Selected
+                    </button>
+                    <button
+                        type="button"
+                        className={`table__content-cancelButton ${isSelected ? 'table__content-cancelButton--active' : ''}`}
+                        onClick={() => setSelectedRowKeys([])}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
                 </div>
             }

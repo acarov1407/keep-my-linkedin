@@ -24,3 +24,45 @@ If you'd like to see a live demo of the application, you can access it <strong><
 - Filter contacts by priority level.
 - Search contacts by name.
 - Clear search.
+
+## Screenshots
+- Creating contact. <br></br>
+
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/8e98a5b6-72cf-4aae-a660-881d1cfb1f84)
+
+- Editing Contact. <br></br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/9bfd4b65-7a89-4b97-b9a7-a49ccec44445)
+
+- Deleting multiple contacts <br></br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/52d3a63f-015a-4bba-8f1b-7be826034504)
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/e5100859-0222-450f-b867-476a59bbf52d)
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/45b61150-eaaa-495a-9fdd-ea8f9f4d614d)
+
+- Searching a contact. <br></br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a7eefca7-5c1c-4a07-aff5-fbd37af7c75a)
+
+## Installation
+1. Clone the repository to your local machine:
+   ```
+   git clone https://github.com/acarov1407/keep-my-linkedin.git
+   ```
+2. Navigate to project directory
+   ```
+   cd keep-my-linkedin
+   ```
+3. Install the dependencies using npm:
+   ```
+   npm install
+   ```
+## Usage 
+1. Start the application in development mode:
+   ```
+   npm run dev
+   ```
+2. Open your web browser and go to <strong><a>http://localhost:5173/</a></strong>
+
+## Author
+- Andrés Caro Velandia
+
+## License
+This project is licensed under the MIT License.

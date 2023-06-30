@@ -1,10 +1,10 @@
 # KeepMyLinkedins
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/139de99d-7f74-4b45-9ef6-2a3c444afc6c)
 
-## About
+## About :open_book:
 This project is a web application developed in React Vite with Redux Toolkit that allows you to maintain a contact agenda for LinkedIn users. The application allows users to add people to their contact list, including their name, LinkedIn profile link, work notes, and priority level based on how important a person is in your contact list.
 
-## Demo
+## Demo :mag_right:
 If you'd like to see a live demo of the application, you can access it <strong><a href="https://www.npmjs.com/package/react-modal">Here</a></strong>
 
 ## Technologies :hammer_and_wrench:
@@ -25,7 +25,7 @@ If you'd like to see a live demo of the application, you can access it <strong><
 - Search contacts by name.
 - Clear search.
 
-## Screenshots
+## Screenshots :camera:
 - Creating contact. <br></br>
 
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/8e98a5b6-72cf-4aae-a660-881d1cfb1f84)
@@ -41,7 +41,7 @@ If you'd like to see a live demo of the application, you can access it <strong><
 - Searching a contact. <br></br>
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a7eefca7-5c1c-4a07-aff5-fbd37af7c75a)
 
-## Installation
+## Installation :gear:
 1. Clone the repository to your local machine:
    ```
    git clone https://github.com/acarov1407/keep-my-linkedin.git

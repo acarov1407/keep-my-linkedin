@@ -1,9 +1,14 @@
-# KeepMyLinkedins
+# Keep-My-Linkedins
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/139de99d-7f74-4b45-9ef6-2a3c444afc6c)
 
 ## About :open_book:
 This project is a web application developed in React Vite with Redux Toolkit that allows you to maintain a contact agenda for LinkedIn users. The application allows users to add people to their contact list, including their name, LinkedIn profile link, work notes, and priority level based on how important a person is in your contact list.
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3a405a381f0e85ed61ccee3373fbbd683492ff59
 ## Technologies :hammer_and_wrench:
 - [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://es.react.dev/)
 - [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -39,6 +44,7 @@ This project is a web application developed in React Vite with Redux Toolkit tha
 ![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a7eefca7-5c1c-4a07-aff5-fbd37af7c75a)
 
 ## Installation :gear:
+- ### Project Configuration
 1. Clone the repository to your local machine:
    ```
    git clone https://github.com/acarov1407/keep-my-linkedin.git
@@ -51,6 +57,16 @@ This project is a web application developed in React Vite with Redux Toolkit tha
    ```
    npm install
    ```
+- ### API Configuration
+1. Go to <a>https://mockapi.io/</a>
+2. Create a new Project with "/api" prefix <br> </br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/c5038277-5f9a-4f36-85ea-686761c9b6dd)
+4. Create a new resource with the following schema: <br> </br>
+![image](https://github.com/acarov1407/keep-my-linkedin/assets/118088808/a22f3656-4894-457b-b138-93456b65ae42)
+5. Copy your API endpoint (should be like https://[random-key].mockapi.io/api/users )
+6. In root project folder create a file ".env"
+7. Create an environment variable VITE_API_URL with your API endpoint
+
 ## Usage 
 1. Start the application in development mode:
    ```

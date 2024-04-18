@@ -4,11 +4,6 @@
 ## About :open_book:
 This project is a web application developed in React Vite with Redux Toolkit that allows you to maintain a contact agenda for LinkedIn users. The application allows users to add people to their contact list, including their name, LinkedIn profile link, work notes, and priority level based on how important a person is in your contact list.
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3a405a381f0e85ed61ccee3373fbbd683492ff59
 ## Technologies :hammer_and_wrench:
 - [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://es.react.dev/)
 - [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
